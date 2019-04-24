@@ -22,6 +22,7 @@ import { UNSTABLE_NETWORK_MODE_HEADER } from '../browser/connection/unstable-net
 import WarningLog from '../notifications/warning-log';
 import WARNING_MESSAGE from '../notifications/warning-message';
 import { StateSnapshot } from 'testcafe-hammerhead';
+import { log as consoleLog } from 'console';
 
 import {
     isCommandRejectableByPageError,
@@ -417,14 +418,21 @@ export default class TestRun extends AsyncEventEmitter {
 
     // Handle driver request
     _fulfillCurrentDriverTask (driverStatus) {
-        if (driverStatus.executionError)
+        if (driverStatus.executionError) {
+            consoleLog('_fulfillCurrentDriverTask');
+            consoleLog(JSON.stringify(driverStatus.executionError));
+
             this._rejectCurrentDriverTask(driverStatus.executionError);
+        }
         else
             this._resolveCurrentDriverTask(driverStatus.result);
     }
 
     _handlePageErrorStatus (pageError) {
         if (this.currentDriverTask && isCommandRejectableByPageError(this.currentDriverTask.command)) {
+            consoleLog('_handlePageErrorStatus');
+            consoleLog(JSON.stringify(pageError));
+
             this._rejectCurrentDriverTask(pageError);
             this.pendingPageError = null;
 
@@ -689,8 +697,12 @@ export default class TestRun extends AsyncEventEmitter {
     _disconnect (err) {
         this.disconnected = true;
 
-        if (this.currentDriverTask)
+        if (this.currentDriverTask) {
+            consoleLog('_disconnect');
+            consoleLog(JSON.stringify(err));
+
             this._rejectCurrentDriverTask(err);
+        }
 
         this.emit('disconnected', err);
 
