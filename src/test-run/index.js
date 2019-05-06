@@ -592,6 +592,7 @@ export default class TestRun extends AsyncEventEmitter {
 
         err.callsite          = callsite;
         this.pendingPageError = null;
+        err.__stack           = new Error().stack;
 
         return Promise.reject(err);
     }
