@@ -84,7 +84,7 @@ gulp.task('lint', () => {
             'gulp/**/*.js',
             '!test/client/vendor/**/*.*',
             '!test/functional/fixtures/api/es-next/custom-client-scripts/data/*.js',
-            'Gulpfile.js',
+            '[Gg]ulpfile.js',
         ])
         .pipe(eslint())
         .pipe(eslint.format(process.env.ESLINT_FORMATTER))
