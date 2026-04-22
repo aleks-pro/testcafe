@@ -232,9 +232,6 @@
     "uglify-js": "~3.10.4"
   },
   "overrides": {
-    "glob": "8.1.0",
-    "mocha": {
-      "serialize-javascript": "^7.0.4"
-    }
+    "glob": "8.1.0"
   }
 }
