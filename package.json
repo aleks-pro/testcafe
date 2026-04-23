@@ -55,10 +55,7 @@
     "test": "gulp travis",
     "build": "gulp build",
     "test-functional-local-headless-chrome-run-esm": "cross-env NODE_OPTIONS='--experimental-loader=./lib/compiler/esm-loader.js' gulp test-functional-local-headless-chrome-run --steps-as-tasks",
-    "test-functional-local-headless-chrome-esm": "npm run build && npm run test-functional-local-headless-chrome-run-esm",
-    "publish-please-only": "publish-please",
-    "publish-please": "del-cli package-lock.json node_modules && npm i && publish-please",
-    "prepublishOnly": "publish-please guard"
+    "test-functional-local-headless-chrome-esm": "npm run build && npm run test-functional-local-headless-chrome-run-esm"
   },
   "dependencies": {
     "@babel/core": "^7.23.2",
@@ -167,7 +164,6 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-inject": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "@testcafe/publish-please": "^5.6.0",
     "@types/callsite": "^1.0.30",
     "@types/chai": "^3.5.2",
     "@types/debug": "^4.1.5",
