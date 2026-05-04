@@ -24,7 +24,7 @@ var SAFE_ERROR_CTORS = {
     'ReferenceError': ReferenceError,
     'SyntaxError':    SyntaxError,
     'TypeError':      TypeError,
-    'URIError':       URIError
+    'URIError':       URIError,
 };
 
 var ARRAY_BUFFER_SUPPORTED = typeof ArrayBuffer === 'function';
