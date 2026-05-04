@@ -3,7 +3,7 @@
 // Tests for the inlined replicator utility (originally from https://github.com/inikulin/replicator)
 
 const assert      = require('assert');
-const Replicator  = require('../../lib/utils/replicator').default;
+const Replicator  = require('../../lib/utils/replicator');
 const helpersGH16 = require('./helpers/gh-16');
 
 describe('Replicator', function () {
