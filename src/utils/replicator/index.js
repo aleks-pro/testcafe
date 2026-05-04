@@ -17,6 +17,16 @@ var TYPED_ARRAY_CTORS = {
     'Float64Array':      typeof Float64Array === 'function' ? Float64Array : void 0,
 };
 
+var SAFE_ERROR_CTORS = {
+    'Error':          Error,
+    'EvalError':      EvalError,
+    'RangeError':     RangeError,
+    'ReferenceError': ReferenceError,
+    'SyntaxError':    SyntaxError,
+    'TypeError':      TypeError,
+    'URIError':       URIError
+};
+
 var ARRAY_BUFFER_SUPPORTED = typeof ArrayBuffer === 'function';
 var MAP_SUPPORTED          = typeof Map === 'function';
 var SET_SUPPORTED          = typeof Set === 'function';
@@ -372,7 +382,7 @@ var builtInTransforms = [
         },
 
         fromSerializable: function (val) {
-            var Ctor = globalThis[val.name] || Error;
+            var Ctor = SAFE_ERROR_CTORS[val.name] || Error;
             var err  = new Ctor(val.message);
 
             err.stack = val.stack;
