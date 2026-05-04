@@ -1,19 +1,9 @@
-// Inlined from https://github.com/inikulin/replicator (MIT License, Ivan Nikulin)
 /* eslint-disable no-var */
 
 // Const
 var TRANSFORMED_TYPE_KEY    = '@t';
 var CIRCULAR_REF_KEY        = '@r';
 var KEY_REQUIRE_ESCAPING_RE = /^#*@(t|r)$/;
-
-/* eslint-disable no-eval */
-var GLOBAL = (function getGlobal () {
-    // NOTE: see http://www.ecma-international.org/ecma-262/6.0/index.html#sec-performeval step 10
-    var savedEval = eval;
-
-    return savedEval('this');
-})();
-/* eslint-enable no-eval */
 
 var TYPED_ARRAY_CTORS = {
     'Int8Array':         typeof Int8Array === 'function' ? Int8Array : void 0,
@@ -382,7 +372,7 @@ var builtInTransforms = [
         },
 
         fromSerializable: function (val) {
-            var Ctor = GLOBAL[val.name] || Error;
+            var Ctor = globalThis[val.name] || Error;
             var err  = new Ctor(val.message);
 
             err.stack = val.stack;
